@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RainSafe — Usage & Terrain</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+body{
+    font-family:Poppins, Arial, sans-serif;
+    background:linear-gradient(135deg,#eafff7,#ffffff);
+    padding:30px;
+}
+.container{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
+}
+h1{text-align:center;color:#0b8f6d;}
+.question{margin:25px 0;}
+label{font-weight:600;display:block;margin-bottom:10px;}
+select{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ccc;
+}
+button{
+    margin-top:30px;
+    padding:15px 30px;
+    background:#0b8f6d;
+    color:white;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+}
+button:hover{background:#0aa37b;}
+
+    /* ===== Progress Indicator ===== */
+
+.progress-wrapper{
+    margin-bottom:30px;
+}
+
+.progress-text{
+    font-weight:600;
+    color:#0b8f6d;
+    margin-bottom:10px;
+}
+
+.progress-bar{
+    width:100%;
+    height:12px;
+    background:#e0f2ec;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    background:#0b8f6d;
+    border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="progress-wrapper">
+    <div class="progress-text">Step 2 of 3 — Usage & Preferences</div>
+    <div class="progress-bar">
+        <div class="progress-fill" style="width:66%;"></div>
+    </div>
+</div>
+
+<h1>Usage & Storage Preferences</h1>
+
+<form action="/recommend" method="POST">
+
+
+<div class="question">
+<label>6. Climate type?</label>
+<select name="climate" required>
+
+<option value="">Select</option>
+<option>Hot and dry</option>
+<option>Humid coastal</option>
+<option>Cool hilly</option>
+<option>Semi-arid</option>
+<option>Tropical monsoon</option>
+</select>
+</div>
+
+<div class="question">
+<label>7. Use of harvested water?</label>
+<select name="usage" required>
+
+<option value="">Select</option>
+<option>Irrigation</option>
+<option>Kitchen garden</option>
+<option>Cleaning</option>
+<option>Toilet flushing</option>
+<option>Drinking (filtered)</option>
+</select>
+</div>
+
+<div class="question">
+<label>8. Who will this water serve?</label>
+<select name="served" required>
+
+<option value="">Select</option>
+<option>Family of 3–4</option>
+<option>500 sq.ft garden</option>
+<option>1 acre farmland</option>
+<option>Family of 6</option>
+<option>Livestock (10 goats)</option>
+</select>
+</div>
+
+<div class="question">
+<label>9. Land type?</label>
+<select name="land" required>
+
+<option value="">Select</option>
+<option>Flat</option>
+<option>Slightly sloped</option>
+<option>Steep</option>
+<option>Mixed</option>
+<option>Terraced</option>
+</select>
+</div>
+
+<div class="question">
+<label>10. Storage preference?</label>
+<select name="storage" required>
+
+<option value="">Select</option>
+<option>Only storage tank</option>
+<option>Only recharge pit</option>
+<option>Both</option>
+<option>Underground sump</option>
+<option>Multiple recharge pits</option>
+</select>
+</div>
+
+<button type="submit">Submit & Get Recommendation</button>
+</form>
+</div>
+
+
+</body>
+</html>

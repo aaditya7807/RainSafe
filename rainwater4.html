@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RainSafe — Feedback</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+body{
+    font-family:Poppins, Arial, sans-serif;
+    background:linear-gradient(135deg,#dfffee,#ffffff);
+    padding:30px;
+}
+.container{
+    max-width:800px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
+}
+h1{
+    text-align:center;
+    color:#0b8f6d;
+    margin-bottom:10px;
+}
+p{
+    text-align:center;
+    color:#444;
+    margin-bottom:30px;
+}
+label{
+    font-weight:600;
+    display:block;
+    margin-top:20px;
+}
+input, select, textarea{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+textarea{
+    resize:none;
+    height:120px;
+}
+button{
+    margin-top:30px;
+    padding:15px 30px;
+    background:#0b8f6d;
+    color:white;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+button:hover{
+    background:#0aa37b;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Feedback</h1>
+    <p>Your feedback helps us improve RainSafe 🌱</p>
+
+    <form id="feedbackForm">
+
+        <label>Your Name (optional)</label>
+        <input type="text" name="name" placeholder="Enter your name">
+
+        <label>How useful was RainSafe for you?</label>
+        <select name="usefulness" required>
+            <option value="">Select</option>
+            <option>Very useful</option>
+            <option>Useful</option>
+            <option>Average</option>
+            <option>Not useful</option>
+        </select>
+
+        <label>Was the information easy to understand?</label>
+        <select name="clarity" required>
+            <option value="">Select</option>
+            <option>Very easy</option>
+            <option>Easy</option>
+            <option>Moderate</option>
+            <option>Difficult</option>
+        </select>
+
+        <label>Would you recommend RainSafe to other farmers?</label>
+        <select name="recommend" required>
+            <option value="">Select</option>
+            <option>Yes</option>
+            <option>Maybe</option>
+            <option>No</option>
+        </select>
+
+        <label>Any suggestions or comments?</label>
+        <textarea name="comments" placeholder="Write your feedback here..."></textarea>
+
+        <button type="submit">Submit Feedback</button>
+    </form>
+</div>
+
+<script>
+// OOP + jQuery
+class Feedback {
+    constructor(form){
+        this.form = form;
+    }
+
+    saveFeedback(){
+        let feedbackData = $(this.form).serializeArray();
+        localStorage.setItem("feedbackData", JSON.stringify(feedbackData));
+        alert("Thank you for your feedback!");
+        this.form.reset();
+    }
+}
+
+// jQuery submit handling
+$("#feedbackForm").on("submit", function(e){
+    e.preventDefault();
+    let fb = new Feedback(this);
+    fb.saveFeedback();
+});
+</script>
+
+</body>
+</html>

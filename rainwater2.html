@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RainSafe — Site Details</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+body{
+    font-family:Poppins, Arial, sans-serif;
+    background:linear-gradient(135deg,#d9fff1,#f3fffb);
+    padding:30px;
+}
+.container{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
+}
+h1{
+    text-align:center;
+    color:#0b8f6d;
+}
+.question{
+    margin:25px 0;
+}
+label{
+    font-weight:600;
+    display:block;
+    margin-bottom:10px;
+}
+select{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ccc;
+}
+button{
+    margin-top:30px;
+    padding:15px 30px;
+    background:#0b8f6d;
+    color:white;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+}
+button:hover{ background:#0aa37b; }
+    /* ===== Progress Indicator ===== */
+
+.progress-wrapper{
+    margin-bottom:30px;
+}
+
+.progress-text{
+    font-weight:600;
+    color:#0b8f6d;
+    margin-bottom:10px;
+}
+
+.progress-bar{
+    width:100%;
+    height:12px;
+    background:#e0f2ec;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    background:#0b8f6d;
+    border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="progress-wrapper">
+    <div class="progress-text">Step 1 of 3 — Site & Roof Details</div>
+    <div class="progress-bar">
+        <div class="progress-fill" style="width:33%;"></div>
+    </div>
+</div>
+
+<h1>Site & Roof Information</h1>
+
+<form action="/calculate" method="POST">
+
+
+<div class="question">
+<label>1. What is your location and annual rainfall?</label>
+<select name="rainfall" required>
+<option value="">Select</option>
+<option>Delhi — 800 mm</option>
+<option>Mumbai — 2400 mm</option>
+<option>Shillong — 3200 mm</option>
+<option>Chennai — 1400 mm</option>
+<option>Kerala (Kozhikode) — 3000 mm</option>
+</select>
+</div>
+
+<div class="question">
+<label>2. What type and size of roof do you have?</label>
+<select name="roof" required>
+<option value="">Select</option>
+<option>Concrete roof — 1200 sq.ft</option>
+<option>Corrugated metal roof — 800 sq.ft</option>
+<option>Tiled roof — 1000 sq.ft</option>
+<option>Asbestos roof — 600 sq.ft</option>
+<option>Thatch roof — 400 sq.ft</option>
+</select>
+</div>
+
+<div class="question">
+<label>3. What is the soil type?</label>
+<select name="soil" required>
+<option value="">Select</option>
+<option>Sandy</option>
+<option>Clay</option>
+<option>Loamy</option>
+<option>Rocky mixed</option>
+<option>Red soil</option>
+</select>
+</div>
+
+<div class="question">
+<label>4. Open space availability?</label>
+<select name="space" required>
+<option value="">Select</option>
+<option>200 sq.ft open area</option>
+<option>No open space</option>
+<option>Small recharge pit only</option>
+<option>Large pond space (1000 sq.ft)</option>
+<option>Small backyard for one tank</option>
+</select>
+</div>
+
+<div class="question">
+<label>5. Nearby natural water source?</label>
+<select name="source" required>
+<option value="">Select</option>
+<option>Stream 50m away</option>
+<option>Borewell</option>
+<option>Open well</option>
+<option>No source</option>
+<option>Seasonal pond</option>
+</select>
+</div>
+
+<button type="submit">Next →</button>
+</form>
+</div>
+
+
+
+</body>
+</html>
