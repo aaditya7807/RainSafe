@@ -45,7 +45,11 @@ def recommend():
     storage = request.form["storage"]
 
     # ---- Extract numbers ----
-    rainfall_mm = int(rainfall.split("—")[1].replace("mm", "").strip())
+    try:
+        rainfall_mm = int(rainfall)
+    except (TypeError, ValueError):
+        return redirect(url_for("input_page"))
+
     roof_area_sqft = int(roof.split("—")[1].replace("sq.ft", "").strip())
     roof_area_m2 = roof_area_sqft * 0.092903
 
@@ -129,5 +133,4 @@ def ping():
     return "PONG - Flask backend is alive"
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
-
+    app.run(debug=True)
