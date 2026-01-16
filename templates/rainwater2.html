@@ -2,108 +2,70 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>RainSafe — Site Details</title>
+<title>RainSafe — Step 1</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <style>
 body{
     font-family:Poppins, Arial, sans-serif;
-    background:linear-gradient(135deg,#d9fff1,#f3fffb);
-    padding:30px;
+    background:linear-gradient(135deg,#eafff7,#ffffff);
+    margin:0;
+    padding:0;
 }
+
 .container{
     max-width:900px;
-    margin:auto;
+    margin:60px auto;   /* space BELOW navbar */
     background:white;
     padding:35px;
     border-radius:20px;
     box-shadow:0 8px 25px rgba(0,0,0,0.15);
 }
-h1{
-    text-align:center;
-    color:#0b8f6d;
-}
-.question{
-    margin:25px 0;
-}
-label{
-    font-weight:600;
-    display:block;
-    margin-bottom:10px;
-}
-select{
-    width:100%;
-    padding:12px;
-    border-radius:10px;
-    border:1px solid #ccc;
-}
-button{
-    margin-top:30px;
-    padding:15px 30px;
-    background:#0b8f6d;
-    color:white;
-    border:none;
-    border-radius:12px;
-    font-size:18px;
-    cursor:pointer;
-}
-button:hover{ background:#0aa37b; }
-    /* ===== Progress Indicator ===== */
 
-.progress-wrapper{
-    margin-bottom:30px;
-}
-
-.progress-text{
-    font-weight:600;
-    color:#0b8f6d;
-    margin-bottom:10px;
-}
-
-.progress-bar{
-    width:100%;
-    height:12px;
-    background:#e0f2ec;
-    border-radius:10px;
-    overflow:hidden;
-}
-
-.progress-fill{
-    height:100%;
-    background:#0b8f6d;
-    border-radius:10px;
-}
-
+h1{text-align:center;color:#0b8f6d;margin-bottom:20px;}
+select{width:100%;padding:12px;border-radius:10px;border:1px solid #ccc;}
+.question{margin:25px 0;}
 </style>
 </head>
 
 <body>
 
-<div class="container">
-<div class="progress-wrapper">
-    <div class="progress-text">Step 1 of 3 — Site & Roof Details</div>
-    <div class="progress-bar">
-        <div class="progress-fill" style="width:33%;"></div>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background:#0b8f6d;">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="/">RainSafe</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/input">Step 1</a></li>
+        <li class="nav-item"><a class="nav-link" href="/feedback">Feedback</a></li>
+      </ul>
     </div>
-</div>
+  </div>
+</nav>
 
-<h1>Site & Roof Information</h1>
+<div class="container">
+<h1>Step 1 — Site & Roof Details</h1>
 
 <form action="/calculate" method="POST">
 
 
 <div class="question">
-<label>1. What is your location and annual rainfall?</label>
-<select name="rainfall" required>
-<option value="">Select</option>
-<option>Delhi — 800 mm</option>
-<option>Mumbai — 2400 mm</option>
-<option>Shillong — 3200 mm</option>
-<option>Chennai — 1400 mm</option>
-<option>Kerala (Kozhikode) — 3000 mm</option>
-</select>
+<label>1. Enter Annual Rainfall</label>
+<input
+  type="number"
+  name="rainfall"
+  class="form-control"
+  placeholder="Enter annual rainfall in mm (e.g. 450)"
+  min="50"
+  max="6000"
+  required
+>
 </div>
 
 <div class="question">
@@ -154,11 +116,58 @@ button:hover{ background:#0aa37b; }
 </select>
 </div>
 
-<button type="submit">Next →</button>
+<div class="d-flex justify-content-between mt-4">
+  <a href="/" class="btn btn-outline-success px-4">← Back</a>
+  <button type="submit" class="btn btn-success px-4">Next →</button>
+
+</div>
+
 </form>
 </div>
 
+<!-- Chad Bot -->
+<style>
+#chat-btn{position:fixed;bottom:20px;right:20px;background:#0b76d1;color:white;padding:14px;border-radius:50%;cursor:pointer;font-size:20px;z-index:9999;}
+#chat-box{position:fixed;bottom:80px;right:20px;width:340px;background:white;border-radius:10px;border:2px solid #0b76d1;display:none;flex-direction:column;font-family:Poppins,Arial;}
+#chat-box header{background:#0b76d1;color:white;padding:10px;}
+#chat-body{height:280px;overflow-y:auto;padding:10px;}
+</style>
 
+<button id="chat-btn">💬</button>
+<div id="chat-box">
+<header>RainSafe Chad-Bot 🤖💧</header>
+<div id="chat-body"></div>
+<div id="chat-input">
+<input type="text" id="msg" placeholder="Ask about rain, roof...">
+<button id="send-btn">Send</button>
+</div></div>
 
+<script>
+const faq=[
+{q:"hello",a:"Hey! This is Step 1 🌧️"},
+{q:"rain",a:"Cities like Shillong & Kerala get 3000mm rain per year!"},
+{q:"roof",a:"Smooth roofs like metal/tile collect most rain 💧"},
+{q:"soil",a:"Clay holds more water. Sandy drains faster."},
+{q:"space",a:"Backyard = tank. No space = recharge pits."},
+{q:"source",a:"Nearby wells recharge faster when rainwater is used."},
+{q:"next",a:"Fill everything then click NEXT →"},
+{q:"harvest",a:"Step 1 tells how much water you CAN collect."}
+];
+const btn=document.getElementById("chat-btn"),box=document.getElementById("chat-box"),
+body=document.getElementById("chat-body"),msg=document.getElementById("msg");
+btn.onclick=()=>box.style.display=box.style.display==="flex"?"none":"flex";
+document.getElementById("send-btn").onclick=reply;
+msg.addEventListener("keypress",e=>{if(e.key==="Enter")reply();});
+function reply(){let t=msg.value.trim().toLowerCase();if(!t)return;print("You",t);
+let m=faq.find(f=>t.includes(f.q));print("Bot",m?m.a:"Try: rain, roof, soil, space");msg.value="";body.scrollTop=body.scrollHeight;}
+function print(w,t){body.innerHTML+=`<div><b>${w}:</b> ${t}</div>`;}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+
+
+
